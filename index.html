@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TravelMate - Your smart local buddy for discovering affordable, delicious, and student-friendly food options in Singapore">
+    <meta name="keywords" content="Singapore food, hawker centres, student dining, exchange students, affordable food">
+    <meta name="author" content="TravelMate">
+    <title>TravelMate - Discover Singapore's Best Student-Friendly Food</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <a href="#home" class="logo">
+                    <i class="fas fa-utensils"></i>
+                    <span>TravelMate</span>
+                </a>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#explore" class="nav-link">Explore</a></li>
+                    <li><a href="#features" class="nav-link">Features</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                    <span class="hamburger"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-background"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Your Smart Local Buddy in <span class="highlight">Singapore</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Discover affordable, delicious, and student-friendly food options with ease. 
+                    Navigate hawker centres, local dishes, and multicultural cuisines like a pro!
+                </p>
+                <div class="hero-buttons">
+                    <a href="#explore" class="btn btn-primary">
+                        <i class="fas fa-compass"></i> Start Exploring
+                    </a>
+                    <a href="#about" class="btn btn-secondary">
+                        <i class="fas fa-info-circle"></i> Learn More
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Why TravelMate?</h2>
+                <p class="section-subtitle">Making your Singapore food journey stress-free and delicious</p>
+            </div>
+            <div class="about-content">
+                <div class="about-card">
+                    <div class="about-icon">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <h3>Navigate with Confidence</h3>
+                    <p>Unfamiliar with hawker centres? We've got you covered with detailed guides, maps, and insider tips to help you explore Singapore's diverse food scene.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <h3>Budget-Friendly Options</h3>
+                    <p>Student budget? No problem! Discover affordable dining options with transparent pricing, so you can eat well without breaking the bank.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-icon">
+                        <i class="fas fa-globe-asia"></i>
+                    </div>
+                    <h3>Multicultural Cuisines</h3>
+                    <p>Explore Chinese, Malay, Indian, and fusion dishes. Learn about local favorites and find food that suits your taste and dietary needs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Explore Section -->
+    <section class="explore" id="explore">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Explore Food Options</h2>
+                <p class="section-subtitle">Filter by cuisine, price, or location to find your perfect meal</p>
+            </div>
+            
+            <!-- Search and Filter -->
+            <div class="search-filter">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Search for dishes, hawker centres, or cuisines...">
+                </div>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">
+                        <i class="fas fa-th"></i> All
+                    </button>
+                    <button class="filter-btn" data-filter="chinese">
+                        <i class="fas fa-dragon"></i> Chinese
+                    </button>
+                    <button class="filter-btn" data-filter="malay">
+                        <i class="fas fa-mosque"></i> Malay
+                    </button>
+                    <button class="filter-btn" data-filter="indian">
+                        <i class="fas fa-om"></i> Indian
+                    </button>
+                    <button class="filter-btn" data-filter="fusion">
+                        <i class="fas fa-blender"></i> Fusion
+                    </button>
+                </div>
+                <div class="price-filter">
+                    <label>Price Range:</label>
+                    <button class="price-btn active" data-price="all">All</button>
+                    <button class="price-btn" data-price="budget">$ (Under $5)</button>
+                    <button class="price-btn" data-price="moderate">$$ ($5-$10)</button>
+                    <button class="price-btn" data-price="splurge">$$$ ($10+)</button>
+                </div>
+            </div>
+
+            <!-- Food Cards Grid -->
+            <div class="food-grid" id="foodGrid">
+                <!-- Food cards will be dynamically inserted by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Smart Features</h2>
+                <p class="section-subtitle">Everything you need to explore Singapore's food scene</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-filter"></i>
+                    </div>
+                    <h3>Smart Filtering</h3>
+                    <p>Easily filter food options by cuisine type, price range, and location to find exactly what you're craving.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>Personalized Recommendations</h3>
+                    <p>Get tailored suggestions based on your preferences, dietary restrictions, and previous favorites.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-map-location-dot"></i>
+                    </div>
+                    <h3>Interactive Maps</h3>
+                    <p>Find nearby hawker centres and restaurants with detailed directions and opening hours.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h3>Food Guides</h3>
+                    <p>Learn about local dishes, how to order, and cultural eating etiquette with our comprehensive guides.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Student Reviews</h3>
+                    <p>Read honest reviews from fellow exchange students about their dining experiences.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Mobile-Friendly</h3>
+                    <p>Access TravelMate on any device, perfect for on-the-go food discoveries around campus.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Discover Singapore's Food Scene?</h2>
+                <p>Join thousands of exchange students who are eating well and exploring with confidence!</p>
+                <a href="#explore" class="btn btn-primary btn-large">
+                    <i class="fas fa-rocket"></i> Get Started Now
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Get in Touch</h2>
+                <p class="section-subtitle">Have questions? We're here to help!</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email Us</h4>
+                            <p>hello@travelmate.sg</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Call Us</h4>
+                            <p>+65 1234 5678</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Visit Us</h4>
+                            <p>Singapore University Campus</p>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <input type="text" id="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i> Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4><i class="fas fa-utensils"></i> TravelMate</h4>
+                    <p>Your smart local buddy for discovering Singapore's best food options.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#explore">Explore</a></li>
+                        <li><a href="#features">Features</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Food Guides</a></li>
+                        <li><a href="#">Hawker Centres</a></li>
+                        <li><a href="#">Student Tips</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Stay Connected</h4>
+                    <p>Get the latest food recommendations and updates!</p>
+                    <div class="newsletter">
+                        <input type="email" placeholder="Enter your email">
+                        <button><i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 TravelMate. Made with <i class="fas fa-heart"></i> for exchange students in Singapore.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Main JavaScript -->
+    <script src="js/app.js"></script>
+</body>
+</html>
