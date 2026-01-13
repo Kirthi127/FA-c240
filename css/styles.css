@@ -580,8 +580,16 @@ section {
 .food-card-image {
     width: 100%;
     height: 200px;
-    object-fit: cover;
+    overflow: hidden;
     background: var(--gradient-secondary);
+    position: relative;
+}
+
+.food-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 .food-card-content {
@@ -641,62 +649,162 @@ section {
     display: none;
 }
 
-/* ===== Features Section ===== */
-.features {
-    background: var(--white);
+/* ===== Locations Section (MRT Food Guide) ===== */
+.locations {
+    background: var(--light-color);
+    padding: var(--spacing-xl) 0;
 }
 
-.features-grid {
+.mrt-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.mrt-tab {
+    padding: 1rem 2rem;
+    border: 2px solid var(--secondary-color);
+    background: var(--white);
+    color: var(--secondary-color);
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.mrt-tab:hover {
+    background: var(--secondary-color);
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.mrt-tab.active {
+    background: var(--secondary-color);
+    color: var(--white);
+}
+
+.mrt-content {
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+.mrt-content.active {
+    display: block;
+}
+
+.location-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: var(--spacing-md);
 }
 
-.feature-card {
-    background: var(--light-color);
+.location-card {
+    background: var(--white);
     padding: var(--spacing-md);
     border-radius: var(--radius-lg);
-    text-align: center;
+    box-shadow: var(--shadow-sm);
     transition: all var(--transition-normal);
-    border: 2px solid transparent;
 }
 
-.feature-card:hover {
+.location-card:hover {
     transform: translateY(-5px);
-    background: var(--white);
-    box-shadow: var(--shadow-md);
-    border-color: var(--secondary-color);
+    box-shadow: var(--shadow-lg);
 }
 
-.feature-icon {
-    width: 70px;
-    height: 70px;
-    margin: 0 auto var(--spacing-sm);
-    background: var(--gradient-secondary);
-    border-radius: var(--radius-md);
+.location-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 2px solid var(--light-color);
+}
+
+.location-header h3 {
+    color: var(--dark-color);
+    font-size: 1.3rem;
     display: flex;
     align-items: center;
-    justify-content: center;
-    font-size: 1.8rem;
+    gap: 0.5rem;
+}
+
+.location-header i {
+    color: var(--primary-color);
+}
+
+.station-badges {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+}
+
+.station-badge {
+    padding: 0.3rem 0.8rem;
+    border-radius: var(--radius-sm);
+    font-weight: 700;
+    font-size: 0.85rem;
     color: var(--white);
-    transition: all var(--transition-normal);
 }
 
-.feature-card:hover .feature-icon {
-    transform: scale(1.1);
-    box-shadow: var(--shadow-md);
+.station-badge.purple {
+    background: #9D5B8B;
 }
 
-.feature-card h3 {
+.station-badge.red {
+    background: #E42528;
+}
+
+.station-badge.green {
+    background: #009645;
+}
+
+.station-badge.yellow {
+    background: #FA9E0D;
+}
+
+.station-badge.blue {
+    background: #005EC4;
+}
+
+.station-badge.brown {
+    background: #9D5B25;
+}
+
+.food-recommendations {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.rec-item {
+    padding: 0.8rem;
+    background: var(--light-color);
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-fast);
+}
+
+.rec-item:hover {
+    background: #e8f5f7;
+    transform: translateX(5px);
+}
+
+.rec-item strong {
+    display: block;
     color: var(--dark-color);
-    margin-bottom: var(--spacing-xs);
-    font-size: 1.2rem;
+    margin-bottom: 0.3rem;
+    font-size: 1rem;
 }
 
-.feature-card p {
+.rec-item p {
     color: var(--gray);
-    line-height: 1.6;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
+    margin: 0;
 }
 
 /* ===== CTA Section ===== */
@@ -967,8 +1075,18 @@ section {
         grid-template-columns: 1fr;
     }
     
-    .features-grid {
+    .location-cards {
         grid-template-columns: 1fr;
+    }
+    
+    .mrt-tabs {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .mrt-tab {
+        width: 100%;
+        justify-content: center;
     }
     
     .contact-content {
@@ -1040,6 +1158,402 @@ section {
     font-size: 4rem;
     color: var(--light-gray);
     margin-bottom: var(--spacing-sm);
+}
+
+/* ===== Food Detail Modal ===== */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    position: relative;
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    max-width: 900px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: var(--shadow-xl);
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+    z-index: 1;
+}
+
+.modal.active .modal-content {
+    transform: scale(1);
+}
+
+.modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: var(--dark-color);
+    transition: all var(--transition-fast);
+    z-index: 2;
+}
+
+.modal-close:hover {
+    background: var(--white);
+    transform: rotate(90deg);
+}
+
+.modal-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+}
+
+.modal-image {
+    width: 100%;
+    height: 100%;
+    min-height: 400px;
+    overflow: hidden;
+    border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+}
+
+.modal-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.modal-details {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.modal-header h2 {
+    font-size: 2rem;
+    color: var(--dark-color);
+    margin-bottom: 0.5rem;
+}
+
+.modal-badges {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.badge {
+    padding: 0.4rem 0.8rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.badge-cuisine {
+    background: var(--secondary-color);
+    color: var(--white);
+}
+
+.badge-price {
+    background: var(--accent-color);
+    color: var(--dark-color);
+}
+
+.modal-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.info-item {
+    display: flex;
+    gap: 0.8rem;
+    align-items: start;
+}
+
+.info-item i {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    margin-top: 0.2rem;
+}
+
+.info-item strong {
+    display: block;
+    color: var(--dark-color);
+    margin-bottom: 0.2rem;
+}
+
+.info-item p {
+    color: var(--gray);
+    margin: 0;
+}
+
+.modal-description h3,
+.modal-tips h3 {
+    font-size: 1.2rem;
+    color: var(--dark-color);
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.modal-description p {
+    color: var(--gray);
+    line-height: 1.6;
+}
+
+.modal-tips ul {
+    list-style: none;
+    padding: 0;
+}
+
+.modal-tips li {
+    padding: 0.5rem 0;
+    color: var(--gray);
+    display: flex;
+    align-items: center;
+}
+
+.modal-tips li:before {
+    content: "✓";
+    color: var(--primary-color);
+    font-weight: bold;
+    margin-right: 0.8rem;
+}
+
+/* Location Modal Specific Styles */
+.location-modal-header {
+    padding: 2rem 3rem;
+    background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%);
+    color: var(--white);
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    margin: -2rem -2rem 2rem -2rem;
+    text-align: center;
+}
+
+.location-modal-header h2 {
+    color: var(--white);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.location-modal-header .modal-badges {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.location-places {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.location-place {
+    background: var(--light-color);
+    padding: 1.5rem;
+    border-radius: var(--radius-md);
+}
+
+.location-place h3 {
+    color: var(--dark-color);
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.place-info {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: var(--white);
+    border-radius: var(--radius-sm);
+}
+
+.place-info p {
+    margin: 0.5rem 0;
+    color: var(--gray);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.place-info i {
+    color: var(--primary-color);
+    width: 20px;
+}
+
+.stalls-list {
+    margin-top: 1rem;
+}
+
+.stalls-list h4 {
+    color: var(--dark-color);
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.stall-item {
+    background: var(--white);
+    padding: 1rem;
+    margin-bottom: 0.8rem;
+    border-radius: var(--radius-sm);
+    border-left: 3px solid var(--secondary-color);
+    transition: all var(--transition-fast);
+}
+
+.stall-item:hover {
+    transform: translateX(5px);
+    box-shadow: var(--shadow-sm);
+}
+
+.stall-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.stall-header strong {
+    color: var(--dark-color);
+    font-size: 1rem;
+}
+
+.stall-price {
+    background: var(--accent-color);
+    color: var(--dark-color);
+    padding: 0.2rem 0.6rem;
+    border-radius: var(--radius-sm);
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.stall-dish {
+    color: var(--gray);
+    margin: 0.3rem 0;
+    font-size: 0.95rem;
+}
+
+.stall-dish i {
+    color: var(--secondary-color);
+    margin-right: 0.3rem;
+}
+
+.stall-hours {
+    color: var(--gray);
+    font-size: 0.85rem;
+    margin: 0.3rem 0;
+}
+
+.stall-hours i {
+    color: var(--primary-color);
+    margin-right: 0.3rem;
+}
+
+.location-tips {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: #FFF9E6;
+    border-radius: var(--radius-md);
+    border-left: 4px solid var(--accent-color);
+}
+
+.location-tips h3 {
+    color: var(--dark-color);
+    margin-bottom: 1rem;
+}
+
+.location-tips ul {
+    list-style: none;
+    padding: 0;
+}
+
+.location-tips li {
+    padding: 0.5rem 0;
+    color: var(--gray);
+    display: flex;
+    align-items: start;
+}
+
+.location-tips li:before {
+    content: "💡";
+    margin-right: 0.8rem;
+}
+
+.location-card {
+    cursor: pointer;
+    transition: all var(--transition-normal);
+}
+
+.location-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+/* Mobile Responsive for Modal */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+        max-height: 95vh;
+    }
+    
+    .modal-body {
+        grid-template-columns: 1fr;
+    }
+    
+    .modal-image {
+        min-height: 250px;
+        border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    }
+    
+    .modal-details {
+        padding: 1.5rem;
+    }
+    
+    .modal-header h2 {
+        font-size: 1.5rem;
+    }
+    
+    .modal-info {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* ===== Accessibility ===== */
