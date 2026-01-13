@@ -1675,9 +1675,6 @@ section {
         font-size: 1.5rem;
     }
 }
-    white-space: nowrap;
-    border-width: 0;
-}
 
 :focus-visible {
     outline: 3px solid var(--primary-color);
